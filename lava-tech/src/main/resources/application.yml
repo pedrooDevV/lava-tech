@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: lava-tech
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/lava_tech
+    username: felipao
+    password: senha
+
+  docker:
+    compose:
+      enabled: false
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create
+      show-sql: true
+      properties:
+        hibernate:
+          format_sql: true
+
+  sql:
+    init:
+      mode: always
