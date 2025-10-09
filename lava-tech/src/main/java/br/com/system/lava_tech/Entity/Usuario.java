@@ -2,7 +2,7 @@ package br.com.system.lava_tech.Entity;
 
 
 import br.com.system.lava_tech.Enum.Perfil;
-import br.com.system.lava_tech.Enum.Turno;
+import br.com.system.lava_tech.Enum.Escala;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
@@ -13,6 +13,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "usuario_tb")
@@ -20,6 +21,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Usuario {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,21 +44,21 @@ public class Usuario {
     @Size(max = 255)
     private String email;
 
-    @NotNull
     @Digits(integer = 7, fraction = 2)
     private BigDecimal salario;
 
-    @NotBlank
-    @Column(unique = true)
-    private String matricula;
-
-    @NotNull
     @Digits(integer = 7, fraction = 2)
     private BigDecimal saldo;
 
     @Enumerated(EnumType.STRING)
-    private Turno turno;
+    private Perfil perfil;
+
+    @Column(unique = true)
+    private String matricula;
+
+    @OneToMany(mappedBy = "usuario_id")
+    private List<Agendamento> agendamentos;
 
     @Enumerated(EnumType.STRING)
-    private Perfil perfil;
+    private Escala escala;
 }

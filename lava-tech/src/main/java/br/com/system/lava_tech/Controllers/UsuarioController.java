@@ -2,9 +2,8 @@ package br.com.system.lava_tech.Controllers;
 
 
 import br.com.system.lava_tech.Dto.UsuarioDto;
-import br.com.system.lava_tech.Entity.Usuario;
 import br.com.system.lava_tech.Exceptions.PerfilException;
-import br.com.system.lava_tech.Exceptions.UsuarioNaoExisteException;
+import br.com.system.lava_tech.Exceptions.UsuarioException;
 import br.com.system.lava_tech.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,7 +29,7 @@ public class UsuarioController {
           return ResponseEntity.status(HttpStatus.CREATED).body(Map.of(
                   "Message", "Usuario criado com sucesso"
           ));
-      }catch (UsuarioNaoExisteException | PerfilException e){
+      }catch (UsuarioException | PerfilException e){
           return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of(
              "Error", e.getMessage()
           ));

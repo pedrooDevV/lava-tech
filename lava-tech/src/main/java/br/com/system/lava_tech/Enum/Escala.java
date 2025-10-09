@@ -1,8 +1,7 @@
 package br.com.system.lava_tech.Enum;
 
-public enum Turno {
+public enum Escala {
 
-    NOTURNO,
     HIBRIDO,
     PRESENCIAL,
     REMOTO
